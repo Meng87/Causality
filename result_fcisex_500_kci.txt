@@ -1,0 +1,10 @@
+Graph Nodes:
+sex;length;diameter;height;whole_wt;shucked_wt;viscera_wt;shell_wt;rings
+
+Graph Edges:
+1. length o-o diameter
+2. whole_wt o-o shucked_wt
+3. whole_wt o-o viscera_wt
+4. whole_wt o-o shell_wt
+5. shucked_wt o-o shell_wt
+6. viscera_wt o-o shell_wt

@@ -1,0 +1,60 @@
+Graph Nodes:
+length;diameter;height;whole_wt;shucked_wt;viscera_wt;shell_wt;rings
+
+Graph Edges:
+1. length o-o diameter
+2. length o-> viscera_wt
+3. diameter o-> height
+4. diameter o-> shell_wt
+5. height o-> shell_wt
+6. rings o-> height
+7. shucked_wt o-> whole_wt
+8. viscera_wt --> whole_wt
+9. whole_wt <-> shell_wt
+10. shucked_wt o-> viscera_wt
+11. shucked_wt o-> shell_wt
+12. viscera_wt <-> shell_wt
+13. rings o-> shell_wt
+
+orient_V: X1,X6,X5
+orient_V: X1,X6,X7
+orient_V: X2,X7,X5
+orient_V: X2,X3,X8
+orient_V: X3,X7,X5
+orient_V: X3,X7,X6
+orient_V: X4,X7,X8
+orient_V: X5,X7,X8
+orient_V: X6,X7,X8
+Orient X6 --> X4
+Orient X5 *-> X4
+Orient X7 *-> X4
+length o-o diameter
+length o-> viscera_wt
+diameter o-> height
+diameter o-> shell_wt
+height o-> shell_wt
+rings o-> height
+shucked_wt o-> whole_wt
+viscera_wt --> whole_wt
+shell_wt <-> whole_wt
+shucked_wt o-> viscera_wt
+shucked_wt o-> shell_wt
+shell_wt <-> viscera_wt
+rings o-> shell_wt
+Graph Nodes:
+length;diameter;height;whole_wt;shucked_wt;viscera_wt;shell_wt;rings
+
+Graph Edges:
+1. length o-o diameter
+2. length o-> viscera_wt
+3. diameter o-> height
+4. diameter o-> shell_wt
+5. height o-> shell_wt
+6. rings o-> height
+7. shucked_wt o-> whole_wt
+8. viscera_wt --> whole_wt
+9. whole_wt <-> shell_wt
+10. shucked_wt o-> viscera_wt
+11. shucked_wt o-> shell_wt
+12. viscera_wt <-> shell_wt
+13. rings o-> shell_wt
