@@ -1,7 +1,7 @@
 import sys
 
 #PC
-sys.path.append("")
+sys.path.append("../causal-learn")
 import unittest
 import numpy as np
 from causallearn.search.ConstraintBased.PC import pc
@@ -23,26 +23,13 @@ from causallearn.search.ScoreBased.GES import ges
 
 # http://archive.ics.uci.edu/ml/datasets/Abalone
 
-def test_pc_with_fisher_z():
-    data_path = "abalone_wsex.txt"
-    data = np.loadtxt(data_path, skiprows=1)  # Import the file at data_path as data
-    cg = pc(data, 0.05, fisherz, True, 0,
-            -1)  # Run PC and obtain the estimated graph (CausalGraph object)
+FILENAME = "abalone_wsex2.txt"
 
-    # visualization using pydot
-    # cg.draw_pydot_graph()
-
-    # visualization using networkx
-    cg.to_nx_graph()
-    cg.draw_nx_graph(skel=False)
-
-    print('finish')
-
+# PC Algorithm
 def test_pc_with_kci():
-    data_path = "abalone_wsex2.txt"
-    data = np.loadtxt(data_path, skiprows=1)[:1000, :]  # Import the file at data_path as data
-    cg = pc(data, 0.05, kci, True, 0,
-            -1)  # Run PC and obtain the estimated graph (CausalGraph object)
+    data_path = FILENAME
+    data = np.loadtxt(data_path, skiprows=1)[:1000, :]
+    cg = pc(data, 0.01, kci, True, 0, -1) # change threshold to 0.01
 
     # visualization using pydot
     # cg.draw_pydot_graph()
@@ -51,10 +38,11 @@ def test_pc_with_kci():
     cg.to_nx_graph()
     cg.draw_nx_graph(skel=False)
 
-    print('finish')
+    print("Finished PC algorithm with KCI test.")
 
+# FCI Algorithm
 def test_from_txt():
-    df = pd.read_csv('abalone_wsex2.txt', delimiter=' ')
+    df = pd.read_csv(FILENAME, delimiter=" ")
     data = df.to_numpy()
     data = data[:1000, :]
     v_labels = df.columns.to_list()
@@ -83,17 +71,16 @@ def test_from_txt():
 
     result = str(G)
     print(result)
-    with open("result_fcisex.txt", "w") as result_file:
+    with open(FILENAME, "w") as result_file:
         result_file.write(result)
 
+# GES Algorithm
 def test_single_gen():
-    X = np.loadtxt(fname='abalone_wsex2.txt',skiprows=1)[:1000, :]
-    Record = ges(X, 'local_score_CV_general', maxP=3)
+    X = np.loadtxt(fname=FILENAME,skiprows=1)[:1000, :]
+    Record = ges(X, "local_score_CV_general", maxP=8)
     print(Record["G"])
     print(Record["score"])
 
-
-# test_pc_with_fisher_z()
-# test_pc_with_kci()
-# test_from_txt()
+test_pc_with_kci()
+test_from_txt()
 test_single_gen()
